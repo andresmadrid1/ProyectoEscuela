@@ -1,4 +1,13 @@
-﻿using System;
+﻿using System.Runtime.ExceptionServices;
+using System.Runtime.Versioning;
+using System.Reflection;
+using Microsoft.Win32.SafeHandles;
+using System.Collections.Concurrent;
+using System.Runtime.Serialization;
+using System.Reflection.Emit;
+using System.Data;
+using System.Collections.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Xml;
@@ -323,30 +332,32 @@ namespace miEscuela
 
                 if (crearCurso == "SI")
                 {
-                    Console.WriteLine("Vale indique por favor el nombre del curso que desea crear");
-
-                    var curso1 = new Curso()
+                    List<Curso> cursos = new List<Curso>();
+                    while (crearCurso == "SI")
                     {
-                        nombre = "101",
-                        jornada = TiposJornada.Diurno
+                        Console.WriteLine("Vale indique por favor el nombre del curso que desea crear");
+                        var nombre = Console.ReadLine();
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde,Noche");
+                        var jornada = Console.ReadLine();
+                        if (jornada == "Diurno")
+                        {
+                            cursos.Add(new Curso(){nombre = nombre, jornada = TiposJornada.Diurno});
+                        }
+                        if (jornada == "Tarde")
+                        {
+                            cursos.Add(new Curso(){nombre = nombre, jornada = TiposJornada.Tarde});
+                        }
+                        if (jornada == "Noche")
+                        {
+                            cursos.Add(new Curso(){nombre = nombre, jornada = TiposJornada.Noche});
+                        }
+                        Console.WriteLine("Desea crear otro curso \nSI/NO");
+                        crearCurso = Console.ReadLine().ToUpper();
+                        Console.WriteLine(" ");
                     };
-                    Console.WriteLine("Curso actual: " + curso1.nombre + "\nId de inscripción del curso: " + curso1.uniqueId + "\nJornada del curso: " + curso1.jornada);
                     
-                    var curso2 = new Curso()
-                    {
-                        nombre = "201",
-                        jornada = TiposJornada.Tarde
-                    };
-                    
-                    Console.WriteLine("Curso actual: " + curso2.nombre + "\nId de inscripción del curso: " + curso2.uniqueId + "\nJornada del curso: " + curso2.jornada);
-                    var curso3 = new Curso()
-                    {
-                        nombre = "301",
-                        jornada = TiposJornada.Noche
-                    };
-                    
-                    Console.WriteLine("Curso actual: " + curso3.nombre + "\nId de inscripción del curso: " + curso3.uniqueId + "\nJornada del curso: " + curso3.jornada);
-                    Console.WriteLine(" ");
+                    ImprimirCurso(cursos);
                 }
                 else
                 {
@@ -360,6 +371,14 @@ namespace miEscuela
                 Console.WriteLine(" ");
                 Console.WriteLine("==========================");
                 Console.WriteLine("Gracias por usar nuestro servicio!");
+            }
+        }
+        public static void ImprimirCurso(List<Curso> cursos)
+        {
+            Console.WriteLine("Se presenta el listado de cursos creados: ");
+            for (int i = 0; i<cursos.Count; i++)
+            {
+                Console.WriteLine("Nombre del curso: " + cursos[i].nombre + "\nJornada: " + cursos[i].jornada + "\nID del curso: " + cursos[i].uniqueId);
             }
         }
     }
