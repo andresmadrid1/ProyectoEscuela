@@ -16,7 +16,6 @@ using System.Dynamic;
 using Melodias.Timbre;
 using Entidades.Escuela;
 using Entidades.Universidad;
-using Entidades.Curso;
 using System.IO;
 using System.Security.AccessControl;
 
@@ -36,7 +35,8 @@ namespace miEscuela
             var cantidadEstudiantes = "";
             var cantidadCarreras = "";
             var crearCurso = "";
-
+            var tipoInstituto = "";
+            var nombre = "";
 
             Console.WriteLine("Hola bienvenido a nuestro sistema de registro de institutos educativos! \nPuedes crear instituciones tales como Escuelas y Universidades");
             Console.WriteLine("Te gustaria crear alguna institucion? SI/NO");
@@ -45,7 +45,7 @@ namespace miEscuela
             Console.WriteLine("==========================");
 
             //Si la persona desea crear una institucion se le pregunta que tipo de institucion desea crear, si no desea 
-            //ninguna se finaliza el programa.
+            //se le pregunta si desea crear algun curso.
             if (crearInstitucion == "SI")
             {
                 Console.WriteLine(" ");
@@ -54,7 +54,7 @@ namespace miEscuela
                 Console.WriteLine("Escuela/Universidad");
                 Console.WriteLine(" ");
 
-                var tipoInstituto = Console.ReadLine();
+                tipoInstituto = Console.ReadLine();
                 Console.WriteLine(" ");
                 Console.WriteLine("El instituto que se desea crear es una " + tipoInstituto + " a continuación complete el formulario para poder crear la escuela: ");
                 
@@ -71,7 +71,7 @@ namespace miEscuela
                     if (tipoEscuela == "Primaria")
                     {
                         Console.WriteLine("Por favor indique el nombre de la escuela " + tipoEscuela);
-                        var nombre = Console.ReadLine();
+                        nombre = Console.ReadLine();
                         Console.WriteLine(" ");
                         
                         Console.WriteLine("Por favor indique la ciudad: ");
@@ -118,7 +118,49 @@ namespace miEscuela
                             Console.WriteLine(" ");
                             Console.WriteLine("Se muestra la informacion de la escuela " + tipoEscuela + " : \n");
                             miEscuelaPrimaria.ImprimirInformacionEscuela();
-                            Console.WriteLine("Timbre de recreo!");                  
+                            Console.WriteLine("Timbre de recreo!");
+
+                            // Una vez creada la escuela primaria se le pregunta a la persona si desea crearle cursos a dicha escuela
+                            Console.WriteLine("Desea crear algun curso para la escuela primaria? \nSI/NO"); 
+                            crearCurso = Console.ReadLine().ToUpper();
+                            Console.WriteLine(" ");
+                            //Si la persona desea crear algun curso se le pregunta el tipo de curso que desea crear
+                            //caso contrario que no desee crear un curso tampoco, se cierra el programa.
+                            if (crearCurso == "SI")
+                            {
+                                var miEscuela = new Escuela();
+                                miEscuela.cursosEscuela = new List<CursoEscuela>();
+                                while (crearCurso == "SI")
+                                {
+                                    Console.WriteLine("Vale indique por favor el nombre del curso que desea crear para la Escuela primaria");
+                                    nombre = Console.ReadLine();
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde");
+                                    var jornada = Console.ReadLine();
+                                    if (jornada == "Diurno")
+                                    {
+                                        miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Diurno});
+                                    }
+                                    if (jornada == "Tarde")
+                                    {
+                                        miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Tarde});
+                                    }
+                                    Console.WriteLine("Desea crear otro curso \nSI/NO");
+                                    crearCurso = Console.ReadLine().ToUpper();
+                                    Console.WriteLine(" ");  
+                                }
+                                miEscuela.ImprimirCurso();
+                                Console.WriteLine(" ");
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Gracias por usar nuestro servicio!");
+                            }
+                            if (crearCurso == "NO")
+                            {
+                                Console.WriteLine(" ");
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Gracias por usar nuestro servicio!");
+                                return;
+                            }                  
                         }
                         else
                         {
@@ -131,11 +173,11 @@ namespace miEscuela
                         }  
                     }
 
-                    //Si desea crear una escuela primaria se piden los datos para la escuela primaria.
+                    //Si desea crear una escuela secundaria se piden los datos para la escuela secundaria.
                     if (tipoEscuela == "Secundaria")
                     {
                         Console.WriteLine("Por favor indique el nombre de la escuela " + tipoEscuela);
-                        var nombre = Console.ReadLine();
+                        nombre = Console.ReadLine();
                         Console.WriteLine(" ");
                         
                         Console.WriteLine("Por favor indique la ciudad: ");
@@ -180,7 +222,49 @@ namespace miEscuela
                             miEscuelaSecundaria.cantidadAulas = Convert.ToInt32(cantidadAulas);
                             Console.WriteLine(" ");
                             Console.WriteLine("Se muestra la informacion de la escuela: \n");
-                            miEscuelaSecundaria.ImprimirInformacionEscuela();              
+                            miEscuelaSecundaria.ImprimirInformacionEscuela();
+
+                             // Una vez creada la escuela secundaria se le pregunta a la persona si desea crearle cursos a dicha escuela
+                            Console.WriteLine("Desea crear algun curso para la escuela secundaria? \nSI/NO"); 
+                            crearCurso = Console.ReadLine().ToUpper();
+                            Console.WriteLine(" ");
+                            //Si la persona desea crear algun curso se le pregunta el tipo de curso que desea crear
+                            //caso contrario que no desee crear un curso tampoco, se cierra el programa.
+                            if (crearCurso == "SI")
+                            {
+                                var miEscuela = new Escuela();
+                                miEscuela.cursosEscuela = new List<CursoEscuela>();
+                                while (crearCurso == "SI")
+                                {
+                                    Console.WriteLine("Vale indique por favor el nombre del curso que desea crear para la Escuela secundaria");
+                                    nombre = Console.ReadLine();
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde");
+                                    var jornada = Console.ReadLine();
+                                    if (jornada == "Diurno")
+                                    {
+                                        miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Diurno});
+                                    }
+                                    if (jornada == "Tarde")
+                                    {
+                                        miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Tarde});
+                                    }
+                                    Console.WriteLine("Desea crear otro curso \nSI/NO");
+                                    crearCurso = Console.ReadLine().ToUpper();
+                                    Console.WriteLine(" ");  
+                                }
+                                miEscuela.ImprimirCurso();
+                                Console.WriteLine(" ");
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Gracias por usar nuestro servicio!");
+                            }
+                            if (crearCurso == "NO")
+                            {
+                                Console.WriteLine(" ");
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Gracias por usar nuestro servicio!");
+                                return;
+                            }                               
                         }
                         else
                         {
@@ -195,7 +279,7 @@ namespace miEscuela
                     if (tipoEscuela == "Preescolar")
                     {
                         Console.WriteLine("Por favor indique el nombre de la escuela " + tipoEscuela);
-                        var nombre = Console.ReadLine();
+                        nombre = Console.ReadLine();
                         Console.WriteLine(" ");
                         
                         Console.WriteLine("Por favor indique la ciudad: ");
@@ -206,29 +290,29 @@ namespace miEscuela
                         var direccion = Console.ReadLine();
                         Console.WriteLine(" ");
                         
-                        Console.WriteLine("Desea agregar informacion adicional de la escuela? \nSI/NO");
+                        Console.WriteLine("Desea agregar informacion adicional del preescolar? \nSI/NO");
                         var informacionAdicional= Console.ReadLine().ToUpper();
                         Console.WriteLine(" ");
                         
                         if (informacionAdicional == "SI")
                         {
-                            Console.WriteLine("Indique el año de fundación de la escuela: ");
+                            Console.WriteLine("Indique el año de fundación del preescolar: ");
                             añoFundacion = Console.ReadLine();
                             Console.WriteLine(" ");
                                                
-                            Console.WriteLine("Indique el nombre del fundador de la escuela: ");
+                            Console.WriteLine("Indique el nombre del fundador del preescolar: ");
                             fundadorEscuela = Console.ReadLine();
                             Console.WriteLine(" ");
                             
-                            Console.WriteLine("Cuantos alumnos pueden matricularse en la escuela? ");
+                            Console.WriteLine("Cuantos alumnos pueden matricularse en el preescolar? ");
                             cantidadAlumnos = Console.ReadLine();
                             Console.WriteLine(" "); 
                             
-                            Console.WriteLine("Cuantos profesores posee la escuela? ");
+                            Console.WriteLine("Cuantos profesores posee el preescolar? ");
                             cantidadProfesores = Console.ReadLine();
                             Console.WriteLine(" ");   
                             
-                            Console.WriteLine("Cuantas aulas posee la escuela? ");
+                            Console.WriteLine("Cuantas aulas posee el preescolar? ");
                             cantidadAulas = Console.ReadLine();
                             Console.WriteLine(" "); 
                             
@@ -239,8 +323,50 @@ namespace miEscuela
                             miEscuelaSecundaria.cantidadProfesores = Convert.ToInt32(cantidadProfesores);
                             miEscuelaSecundaria.cantidadAulas = Convert.ToInt32(cantidadAulas);
                             Console.WriteLine(" ");
-                            Console.WriteLine("Se muestra la informacion de la escuela: \n");
-                            miEscuelaSecundaria.ImprimirInformacionEscuela();              
+                            Console.WriteLine("Se muestra la informacion del preescolar: \n");
+                            miEscuelaSecundaria.ImprimirInformacionEscuela();
+
+                            // Una vez creada el preescolar se le pregunta a la persona si desea crearle cursos a dicha preescolar
+                            Console.WriteLine("Desea crear algun curso para el preescolar? \nSI/NO"); 
+                            crearCurso = Console.ReadLine().ToUpper();
+                            Console.WriteLine(" ");
+                            //Si la persona desea crear algun curso se le pregunta el tipo de curso que desea crear
+                            //caso contrario que no desee crear un curso tampoco, se cierra el programa.
+                            if (crearCurso == "SI")
+                            {
+                                var miEscuela = new Escuela();
+                                miEscuela.cursosEscuela = new List<CursoEscuela>();
+                                while (crearCurso == "SI")
+                                {
+                                    Console.WriteLine("Vale indique por favor el nombre del curso que desea crear para el preescolar");
+                                    nombre = Console.ReadLine();
+                                    Console.WriteLine(" ");
+                                    Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde");
+                                    var jornada = Console.ReadLine();
+                                    if (jornada == "Diurno")
+                                    {
+                                        miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Diurno});
+                                    }
+                                    if (jornada == "Tarde")
+                                    {
+                                        miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Tarde});
+                                    }
+                                    Console.WriteLine("Desea crear otro curso \nSI/NO");
+                                    crearCurso = Console.ReadLine().ToUpper();
+                                    Console.WriteLine(" ");  
+                                }
+                                miEscuela.ImprimirCurso();
+                                Console.WriteLine(" ");
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Gracias por usar nuestro servicio!");
+                            }
+                            if (crearCurso == "NO")
+                            {
+                                Console.WriteLine(" ");
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Gracias por usar nuestro servicio!");
+                                return;
+                            }               
                         }
                         else
                         {
@@ -258,7 +384,7 @@ namespace miEscuela
                     Console.WriteLine("==========================");
 
                     Console.WriteLine("Por favor indique el nombre de la universidad ");
-                    var nombre = Console.ReadLine();
+                    nombre = Console.ReadLine();
                     Console.WriteLine(" ");
                         
                     Console.WriteLine("Por favor indique la sede: ");
@@ -308,6 +434,53 @@ namespace miEscuela
                         Console.WriteLine(" ");
                         Console.WriteLine("Se muestra la informacion de la universidad: \n");
                         miUniversidad.ImprimirInformacionUniversidad();
+
+                        Console.WriteLine(" ");
+                        Console.WriteLine("==========================");
+                        Console.WriteLine("Desea crear un curso para la universidad? \nSI/NO"); 
+                        crearCurso = Console.ReadLine().ToUpper();
+                        Console.WriteLine(" ");
+                        //Si la persona desea crear algun curso se le pregunta el tipo de curso que desea crear,
+                        //caso contrario que no desee crear un curso tampoco, se cierra el programa.
+                        if (crearCurso == "SI")
+                        {
+                            var miUniversidadCurso = new Universidad();
+                            miUniversidadCurso.cursosUniversidad = new List<CursoUniversidad>();
+                            while (crearCurso == "SI")
+                            {
+                                Console.WriteLine("Vale indique por favor el nombre del curso que desea crear para la Universidad");
+                                nombre = Console.ReadLine();
+                                Console.WriteLine(" ");
+                                Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde,Noche");
+                                var jornada = Console.ReadLine();
+                                if (jornada == "Diurno")
+                                {
+                                    miUniversidadCurso.cursosUniversidad.Add(new CursoUniversidad(){nombre = nombre, jornada = TiposJornadaUniversidad.Diurno});
+                                }
+                                if (jornada == "Tarde")
+                                {
+                                    miUniversidadCurso.cursosUniversidad.Add(new CursoUniversidad(){nombre = nombre, jornada = TiposJornadaUniversidad.Tarde});
+                                }
+                                if (jornada == "Noche")
+                                {
+                                    miUniversidadCurso.cursosUniversidad.Add(new CursoUniversidad(){nombre = nombre, jornada = TiposJornadaUniversidad.Noche});
+                                }
+                                Console.WriteLine("Desea crear otro curso \nSI/NO");
+                                crearCurso = Console.ReadLine().ToUpper();
+                                Console.WriteLine(" ");
+                            }; 
+                            miUniversidadCurso.ImprimirCurso();
+                            Console.WriteLine(" ");
+                            Console.WriteLine("==========================");
+                            Console.WriteLine("Gracias por usar nuestro servicio!");
+                        }
+                        if (crearCurso == "NO")
+                            {
+                                Console.WriteLine(" ");
+                                Console.WriteLine("==========================");
+                                Console.WriteLine("Gracias por usar nuestro servicio!");
+                                return;
+                            }              
                     }
                     else
                     {
@@ -317,7 +490,7 @@ namespace miEscuela
                         miUniversidad.ImprimirInformacionUniversidadBasica();
                     }
                 }
-                else
+                if (tipoInstituto != "Universidad" || tipoInstituto == "Escuela")
                 {
                     Console.WriteLine("Lo sentimos pero solo se permiten crear escuela o universidades");
                 }
@@ -329,35 +502,74 @@ namespace miEscuela
                 Console.WriteLine("Desea crear un curso para alguna escuela o universidad? \nSI/NO"); 
                 crearCurso = Console.ReadLine().ToUpper();
                 Console.WriteLine(" ");
-
+                
+                //Si la persona desea crear algun curso se le pregunta el tipo de curso que desea crear,
+                //caso contrario que no desee crear un curso tampoco, se cierra el programa.
                 if (crearCurso == "SI")
                 {
-                    List<Curso> cursos = new List<Curso>();
-                    while (crearCurso == "SI")
+                    Console.WriteLine("Para que tipo de institucion te gustaria crear los cursos ?");
+                    tipoInstituto = Console.ReadLine();
+                    Console.WriteLine(" ");
+                    if (tipoInstituto == "Escuela")
                     {
-                        Console.WriteLine("Vale indique por favor el nombre del curso que desea crear");
-                        var nombre = Console.ReadLine();
+                        var miEscuela = new Escuela();
+                        miEscuela.cursosEscuela = new List<CursoEscuela>();
+                        while (crearCurso == "SI")
+                        {
+                            Console.WriteLine("Vale indique por favor el nombre del curso que desea crear para la Escuela");
+                            nombre = Console.ReadLine();
+                            Console.WriteLine(" ");
+                            Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde");
+                            var jornada = Console.ReadLine();
+                            if (jornada == "Diurno")
+                            {
+                                miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Diurno});
+                            }
+                            if (jornada == "Tarde")
+                            {
+                                miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Tarde});
+                            }
+                            Console.WriteLine("Desea crear otro curso \nSI/NO");
+                            crearCurso = Console.ReadLine().ToUpper();
+                            Console.WriteLine(" ");  
+                        }
+                        miEscuela.ImprimirCurso();
                         Console.WriteLine(" ");
-                        Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde,Noche");
-                        var jornada = Console.ReadLine();
-                        if (jornada == "Diurno")
+                        Console.WriteLine("==========================");
+                        Console.WriteLine("Gracias por usar nuestro servicio!");   
+                    }
+                    else
+                    {
+                        var miUniversidad = new Universidad();
+                        miUniversidad.cursosUniversidad = new List<CursoUniversidad>();
+                        while (crearCurso == "SI")
                         {
-                            cursos.Add(new Curso(){nombre = nombre, jornada = TiposJornada.Diurno});
-                        }
-                        if (jornada == "Tarde")
-                        {
-                            cursos.Add(new Curso(){nombre = nombre, jornada = TiposJornada.Tarde});
-                        }
-                        if (jornada == "Noche")
-                        {
-                            cursos.Add(new Curso(){nombre = nombre, jornada = TiposJornada.Noche});
-                        }
-                        Console.WriteLine("Desea crear otro curso \nSI/NO");
-                        crearCurso = Console.ReadLine().ToUpper();
+                            Console.WriteLine("Vale indique por favor el nombre del curso que desea crear para la Universidad");
+                            nombre = Console.ReadLine();
+                            Console.WriteLine(" ");
+                            Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde,Noche");
+                            var jornada = Console.ReadLine();
+                            if (jornada == "Diurno")
+                            {
+                                miUniversidad.cursosUniversidad.Add(new CursoUniversidad(){nombre = nombre, jornada = TiposJornadaUniversidad.Diurno});
+                            }
+                            if (jornada == "Tarde")
+                            {
+                                miUniversidad.cursosUniversidad.Add(new CursoUniversidad(){nombre = nombre, jornada = TiposJornadaUniversidad.Tarde});
+                            }
+                            if (jornada == "Noche")
+                            {
+                                miUniversidad.cursosUniversidad.Add(new CursoUniversidad(){nombre = nombre, jornada = TiposJornadaUniversidad.Noche});
+                            }
+                            Console.WriteLine("Desea crear otro curso \nSI/NO");
+                            crearCurso = Console.ReadLine().ToUpper();
+                            Console.WriteLine(" ");
+                        }; 
+                        miUniversidad.ImprimirCurso();
                         Console.WriteLine(" ");
-                    };
-                    
-                    ImprimirCurso(cursos);
+                        Console.WriteLine("==========================");
+                        Console.WriteLine("Gracias por usar nuestro servicio!"); 
+                    }
                 }
                 else
                 {
@@ -365,20 +577,6 @@ namespace miEscuela
                     Console.WriteLine("==========================");
                     Console.WriteLine("Gracias por usar nuestro servicio!");
                 }           
-            }
-            else
-            {
-                Console.WriteLine(" ");
-                Console.WriteLine("==========================");
-                Console.WriteLine("Gracias por usar nuestro servicio!");
-            }
-        }
-        public static void ImprimirCurso(List<Curso> cursos)
-        {
-            Console.WriteLine("Se presenta el listado de cursos creados: ");
-            for (int i = 0; i<cursos.Count; i++)
-            {
-                Console.WriteLine("Nombre del curso: " + cursos[i].nombre + "\nJornada: " + cursos[i].jornada + "\nID del curso: " + cursos[i].uniqueId);
             }
         }
     }

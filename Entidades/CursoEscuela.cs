@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
-namespace Entidades.Curso
+namespace Entidades.Escuela
 {
-    public class Curso
+    public class CursoEscuela
     {
         public string uniqueId { get; private set; }
         public string nombre { get; set; }
-        public TiposJornada jornada { get; set; }
-        
-        public Curso()
+        public TiposJornadaEscuela jornada { get; set; }
+
+        public CursoEscuela()
         {
             uniqueId = Guid.NewGuid().ToString();
-        }
+        }              
     }
 }

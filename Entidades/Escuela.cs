@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Globalization;
 
 namespace Entidades.Escuela
 {
@@ -13,14 +17,17 @@ namespace Entidades.Escuela
         public int cantidadAulas { get; set;}
         public TiposEscuela TipoEscuela{get; set;}
         public string ciudad { get; set; }
+        public List<CursoEscuela> cursosEscuela { get; set; }
         
-
         public Escuela(string nombre, string direccion, TiposEscuela TipoEscuela, string ciudad=" ")
         {
             this.nombre = nombre;
             this.direccion = direccion;
             this.ciudad = ciudad;
             this.TipoEscuela = TipoEscuela;
+        }
+        public Escuela()
+        {    
         }
 
         public void ImprimirInformacionEscuela()
@@ -42,6 +49,15 @@ namespace Entidades.Escuela
             Console.WriteLine("Direccion: " + direccion);
             Console.WriteLine("Ciudad: " + ciudad);
             Console.WriteLine("Tipo de escuela: " + TipoEscuela);
+        }
+
+        public void ImprimirCurso()
+        {
+            Console.WriteLine("Se presenta el listado de cursos creados: ");
+            for (int i = 0; i < cursosEscuela.Count; i++)
+            {
+                Console.WriteLine("Nombre del curso: " + cursosEscuela[i].nombre + "\nJornada: " + cursosEscuela[i].jornada + "\nID del curso: " + cursosEscuela[i].uniqueId);   
+            }
         }
     }
 }

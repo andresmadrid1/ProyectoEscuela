@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using System.Globalization;
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace Entidades.Universidad
 {
@@ -18,6 +20,7 @@ namespace Entidades.Universidad
         public int cantidadCarreras { get; set; }
 
         public int cantidadAulas { get; set; }
+        public List<CursoUniversidad> cursosUniversidad { get; set; }
 
         public Universidad(string nombre, string sede, string pais, int añoFundacion=2015)
         {
@@ -25,6 +28,9 @@ namespace Entidades.Universidad
             this.sede = sede;
             this.pais = pais;
             this.añoFundacion = añoFundacion;
+        }
+        public Universidad()
+        {
         }
         public void ImprimirInformacionUniversidad()
         {
@@ -44,6 +50,14 @@ namespace Entidades.Universidad
             Console.WriteLine("Sede: "  + sede);
             Console.WriteLine("Pais: " + pais);
             Console.WriteLine("Año de fundacion: " + añoFundacion);
+        }
+        public void ImprimirCurso()
+        {
+            Console.WriteLine("Se presenta el listado de cursos creados: ");
+            for (int i = 0; i<cursosUniversidad.Count; i++)
+            {
+                Console.WriteLine("Nombre del curso: " + cursosUniversidad[i].nombre + "\nJornada: " + cursosUniversidad[i].jornada + "\nID del curso: " + cursosUniversidad[i].uniqueId);
+            }
         }
     }
 }
