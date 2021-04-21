@@ -4,21 +4,19 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace Entidades.Universidad
+namespace miEscuela.Entidades
 {
-    class Universidad
+    public class Universidad
     {
         public string nombre { get; set; }
+    
         public string sede { get; set; }
         public string pais { get; set; }
         public int añoFundacion { get; set; }
         public string decano { get; set; }
         public int cantidadEstudiantes { get; set; }
-
         public int cantidadProfesores { get; set; }
-
         public int cantidadCarreras { get; set; }
-
         public int cantidadAulas { get; set; }
         public List<CursoUniversidad> cursosUniversidad { get; set; }
 

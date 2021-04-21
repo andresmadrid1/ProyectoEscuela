@@ -1,3 +1,4 @@
 bin*
 obj*
 miEscuela.csproj*
+.vscode*

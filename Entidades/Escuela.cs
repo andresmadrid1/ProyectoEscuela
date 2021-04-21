@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Globalization;
 
-namespace Entidades.Escuela
+namespace miEscuela.Entidades
 {
-    class Escuela
+    public class Escuela
     {
         public string nombre { get; set; }
         public string direccion { get; set; }

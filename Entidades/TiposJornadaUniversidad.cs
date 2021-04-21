@@ -1,4 +1,4 @@
-namespace Entidades.Universidad
+namespace miEscuela.Entidades
 {
     public enum TiposJornadaUniversidad
     {

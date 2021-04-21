@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-namespace Entidades.Escuela
+namespace miEscuela.Entidades
 {
     public class CursoEscuela
     {

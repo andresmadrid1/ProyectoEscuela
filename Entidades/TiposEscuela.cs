@@ -1,4 +1,4 @@
-namespace Entidades.Escuela
+namespace miEscuela.Entidades
 {
     public enum TiposEscuela
     {
