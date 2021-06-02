@@ -5,7 +5,7 @@ using miEscuela.Entidades;
 
 namespace cursoEngine
 {
-    public class cursoEducativo
+    public class cursoEducativoUniversidad
     {
         public string crearCurso { get; set; }
         public string nombre { get; set; }

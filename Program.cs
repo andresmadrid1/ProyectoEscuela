@@ -60,7 +60,7 @@ namespace miEscuela
                     Console.WriteLine(" ");
                     if (tipoInstituto == "Escuela")
                     {
-                        var miCurso = new cursoEducativo();
+                        var miCurso = new cursoEducativoEscuela();
                         miCurso.crearCurso = "SI";
                         miCurso.crearCursoNuevo();
                         Console.WriteLine(" ");
@@ -69,7 +69,7 @@ namespace miEscuela
                     }
                     else
                     {
-                        var miCurso = new cursoEducativo();
+                        var miCurso = new cursoEducativoUniversidad();
                         miCurso.crearCurso = "SI";
                         miCurso.crearCursoNuevo();
                         Console.WriteLine(" ");

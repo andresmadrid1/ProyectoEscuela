@@ -54,7 +54,9 @@ namespace miEscuela.Entidades
             Console.WriteLine("Se presenta el listado de cursos creados: ");
             for (int i = 0; i<cursosUniversidad.Count; i++)
             {
+                Console.WriteLine(" ");
                 Console.WriteLine("Nombre del curso: " + cursosUniversidad[i].nombre + "\nJornada: " + cursosUniversidad[i].jornada + "\nID del curso: " + cursosUniversidad[i].uniqueId);
+                Console.WriteLine(" ");
             }
         }
     }

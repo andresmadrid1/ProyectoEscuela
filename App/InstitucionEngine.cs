@@ -37,21 +37,20 @@ namespace InstitucionEngine
             Console.WriteLine("El instituto que se desea crear es una " + tipoInstituto + " : ");
 
             if (tipoInstituto == "Escuela")
-                {
-                    CrearEscuela();
-                    return;
-                    
-                }
-                if (tipoInstituto == "Universidad")
-                {
-                    CrearUniversidad();
-                    return;
-                }
-                if (tipoInstituto != "Universidad" || tipoInstituto != "Escuela")
-                {
-                    Console.WriteLine("Lo sentimos pero solo se permiten crear escuela o universidades");
-                    return;
-                }
+            {
+                CrearEscuela();
+                return;
+            }
+            if (tipoInstituto == "Universidad")
+            {
+                CrearUniversidad();
+                return;
+            }
+            if (tipoInstituto != "Universidad" || tipoInstituto != "Escuela")
+            {
+                Console.WriteLine("Lo sentimos pero solo se permiten crear escuela o universidades");
+                return;
+            }
         }
 
         public void CrearEscuela()
@@ -151,7 +150,7 @@ namespace InstitucionEngine
                 //caso contrario que no desee crear un curso tampoco, se cierra el programa.
                 if (crearCurso == "SI")
                 {
-                    var nuevoCurso = new cursoEducativo();
+                    var nuevoCurso = new cursoEducativoUniversidad();
                     nuevoCurso.crearCurso = "SI";
                     nuevoCurso.crearCursoNuevo();
                     Console.WriteLine(" ");
