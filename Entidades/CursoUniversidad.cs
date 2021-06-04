@@ -7,6 +7,7 @@ namespace miEscuela.Entidades
         public string uniqueId { get; private set; }
         public string nombre { get; set; }
         public TiposJornadaUniversidad jornada { get; set; }
+        public List<Asignaturas> AsignaturasCurso{ get; set; }
         
         public CursoUniversidad()
         {

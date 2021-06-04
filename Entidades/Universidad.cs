@@ -1,3 +1,7 @@
+using System.Security.Cryptography;
+using System.Transactions;
+using Microsoft.Win32.SafeHandles;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Globalization;
 using System;
@@ -19,6 +23,7 @@ namespace miEscuela.Entidades
         public int cantidadCarreras { get; set; }
         public int cantidadAulas { get; set; }
         public List<CursoUniversidad> cursosUniversidad { get; set; }
+        
 
         public Universidad(string nombre, string sede, string pais, int añoFundacion=2015)
         {
@@ -57,6 +62,33 @@ namespace miEscuela.Entidades
                 Console.WriteLine(" ");
                 Console.WriteLine("Nombre del curso: " + cursosUniversidad[i].nombre + "\nJornada: " + cursosUniversidad[i].jornada + "\nID del curso: " + cursosUniversidad[i].uniqueId);
                 Console.WriteLine(" ");
+            }
+        }
+
+        public void AsignaturasUniversidad()
+        {
+            foreach (var curso in cursosUniversidad)
+            {
+                var listaAsignaturas = new List<Asignaturas>()
+                {
+                    new Asignaturas{nombre = "Matematicas 1"},
+                    new Asignaturas{nombre = "Calculo Diferencial"},
+                    new Asignaturas{nombre = "Fisica 1"},
+                    new Asignaturas{nombre = "Programacion basica"},
+                    new Asignaturas{nombre = "Programacion avanzada"}
+                };
+
+                curso.AsignaturasCurso = listaAsignaturas;
+                if (curso.AsignaturasCurso != null)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine($"El curso {curso.nombre} contiene las siguientes asignaturas: ");
+                    Console.WriteLine("");
+                    foreach (var asignatura in curso.AsignaturasCurso)
+                    {
+                        Console.WriteLine("Nombre de la asignatura es " + asignatura.nombre);
+                    }
+                }
             }
         }
     }

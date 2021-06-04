@@ -37,6 +37,7 @@ namespace cursoEngine
                 Console.WriteLine(" ");
             }; 
                 miUniversidadCurso.ImprimirCurso();
+                miUniversidadCurso.AsignaturasUniversidad();
         }
     }
 }

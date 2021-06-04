@@ -1,4 +1,6 @@
-﻿using System.Runtime.ExceptionServices;
+﻿using System.Reflection.Metadata;
+using System.Net.Http.Headers;
+using System.Runtime.ExceptionServices;
 using System.Runtime.Versioning;
 using System.Reflection;
 using Microsoft.Win32.SafeHandles;
@@ -28,6 +30,7 @@ namespace miEscuela
         {
             var crearCurso = "";
             var tipoInstituto = "";
+            var tipoEscuela = "";
 
             Console.WriteLine("Hola bienvenido a nuestro sistema de registro de institutos educativos! \nPuedes crear instituciones tales como Escuelas y Universidades");
             Console.WriteLine("Te gustaria crear alguna institucion? SI/NO");
@@ -60,8 +63,12 @@ namespace miEscuela
                     Console.WriteLine(" ");
                     if (tipoInstituto == "Escuela")
                     {
+                        Console.WriteLine("Escoja por favor cual de las siguientes instituciones quiere crear un curso");
+                        Console.WriteLine("Primaria/Secundaria o Preescolar");
+                        tipoEscuela = Console.ReadLine();
                         var miCurso = new cursoEducativoEscuela();
                         miCurso.crearCurso = "SI";
+                        miCurso.tipoEscuela = tipoEscuela;
                         miCurso.crearCursoNuevo();
                         Console.WriteLine(" ");
                         Console.WriteLine("==========================");

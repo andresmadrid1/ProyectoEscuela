@@ -38,8 +38,6 @@ namespace cursoEngine
                 Console.WriteLine(" ");
             };
             miEscuelaCurso.ImprimirCurso();
-            //Console.WriteLine(miEscuelaCurso.TipoEscuela);
-            //tipoEscuela = miEscuelaCurso.TipoEscuela.ToString();
             Console.WriteLine(tipoEscuela);
             if (tipoEscuela == "Primaria")
             {
@@ -48,6 +46,10 @@ namespace cursoEngine
             if (tipoEscuela == "Secundaria")
             {
                 miEscuelaCurso.crearAsignaturaSecundaria();
+            }
+            if (tipoEscuela == "Preescolar")
+            {
+                miEscuelaCurso.CrearAsignaturaPreescolar();
             }
         }
     }

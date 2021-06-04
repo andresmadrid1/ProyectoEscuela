@@ -2,6 +2,7 @@ using System;
 using InstitucionEngine;
 using System.Collections.Generic;
 using miEscuela.Entidades;
+using cursoEngine;
 
 namespace EscuelaPreescolarEngine
 {
@@ -87,31 +88,10 @@ namespace EscuelaPreescolarEngine
                 //caso contrario que no desee crear un curso tampoco, se cierra el programa.
                 if (crearCurso == "SI")
                 {
-                    var miEscuela = new Escuela();
-                    miEscuela.cursosEscuela = new List<CursoEscuela>();
-                    while (crearCurso == "SI")
-                    {
-                        Console.WriteLine("Vale indique por favor el nombre del curso que desea crear para el preescolar");
-                        nombre = Console.ReadLine();
-                        Console.WriteLine(" ");
-                        Console.WriteLine("Por favor indique la jornada del curso: \nDiurno,Tarde");
-                        var jornada = Console.ReadLine();
-                        if (jornada == "Diurno")
-                        {
-                            miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Diurno});
-                        }
-                        if (jornada == "Tarde")
-                        {
-                            miEscuela.cursosEscuela.Add(new CursoEscuela(){nombre = nombre, jornada = TiposJornadaEscuela.Tarde});
-                        }
-                        Console.WriteLine("Desea crear otro curso \nSI/NO");
-                        crearCurso = Console.ReadLine().ToUpper();
-                        Console.WriteLine(" ");  
-                    }
-                    miEscuela.ImprimirCurso();
-                    Console.WriteLine(" ");
-                    Console.WriteLine("==========================");
-                    Console.WriteLine("Gracias por usar nuestro servicio!");
+                    var miCurso = new cursoEducativoEscuela();
+                    miCurso.crearCurso = crearCurso;
+                    miCurso.tipoEscuela = TiposEscuela.Preescolar.ToString();
+                    miCurso.crearCursoNuevo();
                 }
                 if (crearCurso == "NO")
                 {

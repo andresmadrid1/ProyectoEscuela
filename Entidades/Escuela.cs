@@ -114,6 +114,31 @@ namespace miEscuela.Entidades
                     }
                     Console.WriteLine("");
                 }
+            }   
+        }
+        public void CrearAsignaturaPreescolar()
+        {
+            foreach (var curso in cursosEscuela)
+            {
+                var listaAsignaturas = new List<Asignaturas>()
+                {
+                    new Asignaturas {nombre = "Plastina"},
+                    new Asignaturas {nombre = "Dibujo"},
+                    new Asignaturas {nombre = "Lengua"},
+                    new Asignaturas {nombre = "Pintura"},
+                    new Asignaturas {nombre = "jUEGOS"}
+                };
+                curso.AsignaturasCurso = listaAsignaturas;
+                if (curso.AsignaturasCurso != null)
+                {
+                    Console.WriteLine($"El curso {curso.nombre} contiene las siguientes asignaturas: ");
+                    Console.WriteLine("");
+                    foreach (var asignatura in curso.AsignaturasCurso)
+                    {
+                        Console.WriteLine("Nombre de la asignatura es " + asignatura.nombre);
+                    }
+                    Console.WriteLine("");
+                }   
             }
                 
         }
